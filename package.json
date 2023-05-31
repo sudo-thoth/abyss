@@ -1,0 +1,46 @@
+{
+  "name": "abyss",
+  "version": "1.0.0",
+  "description": "test bot",
+  "main": "./src/djs/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bot": "pm2 start ./src/djs/index.js --watch --name 2Test_bot",
+    "pm2-list": "pm2 list",
+    "pm2-stop": "pm2 stop",
+    "show-logs": "pm2 logs 2Test_bot",
+    "toggle-logs": "pm2 trigger 2Test_bot toggleLogs",
+    "start": "nodemon index.js",
+    "check-deps": "for dep in axios axios-observable chalk cli-box discord.js dotenv moment mongoose rxjs; do if [ ! -d \"node_modules/$dep\" ]; then npm install $dep; fi; done",
+    "kill-node": "pkill -f 'node'"
+  },
+  "author": "LT",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.2.3",
+    "axios-observable": "^2.0.0",
+    "chalk": "^4.1.2",
+    "cli-box": "^6.0.10",
+    "cron": "^2.3.1",
+    "discord.js": "^14.7.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "fluent-ffmpeg": "^2.1.2",
+    "fuse.js": "^6.6.2",
+    "genius-lyrics-api": "^3.2.0",
+    "googleapis": "^118.0.0",
+    "jsdom": "^21.1.1",
+    "moment": "^2.29.4",
+    "mongoose": "^6.9.0",
+    "nodemon": "^2.0.21",
+    "openai": "^3.2.1",
+    "rxjs": "^7.8.0",
+    "twitter-api-v2": "^1.14.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  },
+  "directories": {
+    "example": "examples"
+  }
+}

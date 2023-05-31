@@ -1,0 +1,9 @@
+Folder: *./src/events/
+
+This Folder is for all the event listener files.
+
+Another folder is for the events that are involved during logs, the folder is called "logs" and is located in the same folder as the commands folder.
+
+Another folder for the events that are involved during the startup of the bot, the folder is called "startup" and is located in the same folder as the commands folder.
+
+Another folder for the events that are involved with certain actions of the bot, the folder is called "actions" and is located in the same folder as the commands folder.

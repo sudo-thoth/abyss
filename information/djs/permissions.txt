@@ -1,0 +1,71 @@
+Permissions related to Guild Management:
+
+PermissionFlagsBits.Administrator
+PermissionFlagsBits.ManageGuild
+
+
+Permissions related to Channel Management:
+
+PermissionFlagsBits.ManageChannels
+PermissionFlagsBits.ViewChannel
+PermissionFlagsBits.ManageThreads
+PermissionFlagsBits.UsePublicThreads
+PermissionFlagsBits.UsePrivateThreads
+
+
+Permissions related to Message Management:
+
+PermissionFlagsBits.ManageMessages
+PermissionFlagsBits.SendMessages
+PermissionFlagsBits.SendTTSMessages
+PermissionFlagsBits.EmbedLinks
+PermissionFlagsBits.AttachFiles
+PermissionFlagsBits.ReadMessageHistory
+PermissionFlagsBits.MentionEveryone
+PermissionFlagsBits.SendMessagesInThreads
+
+
+Permissions related to Member Management:
+
+PermissionFlagsBits.ManageRoles
+PermissionFlagsBits.ManageNicknames
+PermissionFlagsBits.MuteMembers
+PermissionFlagsBits.DeafenMembers
+PermissionFlagsBits.MoveMembers
+PermissionFlagsBits.ChangeNickname
+
+
+Permissions related to Webhook Management:
+
+PermissionFlagsBits.ManageWebhooks
+
+
+Permissions related to Emoji Management:
+
+PermissionFlagsBits.ManageEmojis
+PermissionFlagsBits.UseExternalEmojis
+
+
+Permissions related to Voice and Stage Channels:
+
+PermissionFlagsBits.Connect
+PermissionFlagsBits.Speak
+PermissionFlagsBits.UseVAD
+PermissionFlagsBits.RequestToSpeak
+
+
+Permissions related to Audit Log and Moderation:
+
+PermissionFlagsBits.ViewAuditLog
+
+
+Permissions related to Stickers and Activities:
+
+PermissionFlagsBits.UseExternalStickers
+PermissionFlagsBits.StartEmbeddedActivities
+
+
+Permissions related to Slash Commands:
+
+PermissionFlagsBits.UseSlashCommands
+PermissionFlagsBits.UseApplicationCommands
