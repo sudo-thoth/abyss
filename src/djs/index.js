@@ -1,69 +1,29 @@
-require("dotenv").config({ path: "./my.env" });
-const fs = require("fs");
-const { token, mongodb_token } = process.env;
-const {
-  Client,
-  GatewayIntentBits,
-  EmbedBuilder,
-  PermissionsBitField,
-  Permissions,
-  MessageManager,
-  Embed,
-  Collection,
-} = require(`discord.js`);
-const mongoose = require("mongoose");
-const client = new Client({
-  intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent,
-    GatewayIntentBits.GuildPresences,
-    GatewayIntentBits.GuildMembers,
-    GatewayIntentBits.DirectMessages,
-    4, // GuildModeration
-  ],
-  partials: [
-    "User",
-    "GuildMember",
-    "Channel",
-    "Message",
-    "Reaction",
-    "Presence",
-  ],
-});
-const handleFunctions = require("./client/handlers/handleFunctions");
-const handleEvents = require("./client/handlers/handleEvents");
-const handleCommands = require("./client/handlers/handleCommands");
+// This is the main file for the discord.js bot.
+// module.js is the Everything file. It's the file that contains all the modules and exports them.
+const x = require("../module.js")
+const { fs, botToken, mongodb_token, mongoose, handleFunctions, handleEvents, handleCommands, client, sortThenHandleEvents } = x
+
+// handle functions in the djs/functions folder
 const djsFunctionFolders = fs.readdirSync("./src/djs/functions");
 const djsCommandFolders = fs.readdirSync("./src/djs/commands");
 const djsEventFiles = fs.readdirSync("./src/djs/client/events")
   .filter((file) => file.endsWith(".js"));
 const mongoConfig = fs.readdirSync("./src/db/MongoDB/config")
   .filter((file) => file.endsWith(".js"));
-const sortThenHandleEvents = async (client, eventFiles, num) => {
-  console.log(`the number is ${num}`);
-  switch (num) {
-    case 1:
-      handleEvents(client, '../events', eventFiles, '');
-      console.log(`Handle Events: ✅`);
-      break;
-    case 2:
-      handleEvents(client, '../../../db/MongoDB/config', eventFiles, '');
-      console.log(`Handle Events: ✅`);
-      break;
-    default:
-      console.log(`Handle Events: ❌`);
-      break;
-  }
-};
+
+const eventsFolderPath = "./src/djs/events";
+const functionsFolderPath = "./src/djs/functions";
+const commandsFolderPath = "./src/djs/commands";
+
+
 // handle events in the djs/client/events folder
 sortThenHandleEvents(client, djsEventFiles, 1);
 // handle events in the db/MongoDB/config folder
 sortThenHandleEvents(client, mongoConfig, 2);
 // handle functions in the djs/functions folder
-handleFunctions(djsFunctionFolders, "./src/djs/functions");
+handleFunctions(djsFunctionFolders,functionsFolderPath);
 // handle events in the djs/events folder
-handleEvents(client, "./src/djs/events",  )
+handleEvents(client, eventsFolderPath)
 
 // attempt to connect to MongoDB and handle commands then login
 (async () => {
@@ -71,15 +31,19 @@ handleEvents(client, "./src/djs/events",  )
     return;
   } else {
     try {
+      // Connect to MongoDB
       mongoose.connect(mongodb_token);
-      console.log(`---------- >> MongoDB is Online << ----------`);
+      console.log(`----------✅ >> MongoDB is Online << ✅----------`);
       client.connectedToMongoose = true;
     } catch (error) {
       client.connectedToMongoose = false;
+      console.log(`----------❌ >> MongoDB is Offline << ❌----------`);
       console.error;
     } finally {
-      handleCommands(client, djsCommandFolders, "./src/djs/commands").then(
-        client.login(token)
+      // handle commands in the djs/commands folder
+      handleCommands(client, djsCommandFolders, commandsFolderPath).then(
+        // Log the Bot Client in.
+        client.login(botToken)
       );
     }
   }
