@@ -3,7 +3,7 @@ const x = require("../../../../module.js");
 const validateURL = require("../../scripts/validateURL.js");
 const { ButtonBuilder, log } = x
 
-    async function createButton(buttonObj, randID) {
+    async function createButton(buttonObj) {
         // Destructure the buttonObj
         let style = buttonObj?.style?.toString()?.toLowercase() || "primary";
         let disabled = buttonObj?.disabled || false;
