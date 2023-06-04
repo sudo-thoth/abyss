@@ -3,6 +3,10 @@
 const x = require("../module.js")
 const { fs, botToken, mongodb_token, mongoose, handleFunctions, handleEvents, handleCommands, client, sortThenHandleEvents } = x
 
+
+//Changes 
+
+
 // handle functions in the djs/functions folder
 const djsFunctionFolders = fs.readdirSync("./src/djs/functions");
 const djsCommandFolders = fs.readdirSync("./src/djs/commands");
