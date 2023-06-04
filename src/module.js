@@ -65,6 +65,10 @@ const client = new Client({
   const handleCommands = require("./djs/client/handlers/handleCommands.js");
 
 
+  // Commands Functions
+  const purge = require("./djs/functions/commands/purge.js")
+
+
 
   // Import functions
 
@@ -99,6 +103,8 @@ module.exports = {
     validateUrl: validateUrl,
     log: log,
     isColor: isColor,
+    purge: purge,
+    
     
 
 
