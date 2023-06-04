@@ -28,8 +28,14 @@ const {
   Collection,
 } = require(`discord.js`);
 const mongoose = require("mongoose");
-
-
+const {
+  google
+} = require('googleapis');
+const ffmpeg = require('fluent-ffmpeg');
+const {
+  getLyrics,
+  searchSong
+} = require('genius-lyrics-api');
 
 
 const { botToken, mongodb_token } = process.env;

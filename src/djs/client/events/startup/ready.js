@@ -1,6 +1,5 @@
-const scripts = require("../../../functions/scripts/scripts.js");
-const mongoose = require("mongoose");
-
+const x = require("../../../../module.js")
+const {mongoose} = x
 
 module.exports = {
     name: 'ready',
@@ -16,6 +15,7 @@ module.exports = {
               "Juice WRLD - Amazing",
               "Juice WRLD - Ca$h Out",
               "Juice WRLD - Nuts Itch",
+              "Juice WRLD - Another Thing To Do It"
             ];
           
             const types = ["PLAYING", "LISTENING", "WATCHING", "STREAMING", "COMPETING"];
