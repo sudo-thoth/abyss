@@ -66,7 +66,8 @@ const client = new Client({
 
 
   // Commands Functions
-  const purge = require("./djs/functions/commands/purge.js")
+  const purge = require("./djs/functions/commands/Moderation/purge.js")
+  const wipe = require("./djs/functions/commands/Moderation/wipe.js")
 
 
 
@@ -77,6 +78,9 @@ const client = new Client({
   const validateUrl = require("./djs/functions/scripts/validateURL.js")
   const log = require("./djs/functions/scripts/log.js")
   const isColor = require("./djs/functions/scripts/isColor.js")
+  const lessCharsThan = require("./djs/functions/scripts/lessCharsThan.js")
+  const buildButton = require("./djs/functions/helpers/djsBuilders/buildButton.js")
+  const buildRow = require("./djs/functions/helpers/djsBuilders/buildRow.js")
 
 // Exporting files.
 
@@ -104,6 +108,10 @@ module.exports = {
     log: log,
     isColor: isColor,
     purge: purge,
+    wipe: wipe,
+    lessCharsThan: lessCharsThan,
+    buildButton: buildButton,
+    buildRow: buildRow,
     
     
 
