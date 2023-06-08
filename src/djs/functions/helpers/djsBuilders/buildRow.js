@@ -3,57 +3,63 @@ const x = require("../../../../module.js");
 const {
     ActionRowBuilder, log
   } = x
-  async function createActionRow(actionRowObj) {
-    try {
-        const { components } = actionRowObj;
+  async function buildRow(actionRowObj) {
+  // Check if the actionRowObj is defined
+  if (!isDefined(actionRowObj)) {
+    log("Action row object is not defined", actionRowObj);
+    return null;
+  }
 
-        // Check if components is defined and not empty
-        if (!components || components.length === 0) {
-          throw new Error("Components property is not defined or empty");
-        }
-      
-        // Check if there are not more than 5 components in the actionRowObj
-        if (components.length > 5) {
-          throw new Error("Components property length is greater than 5");
-        }
-      
-        // Check if all components are buttons or select menus
-        for (const component of components) {
-          if (component.type !== "BUTTON" && component.type !== "SELECT_MENU") {
-            throw new Error("Component is not a button or selectMenu");
-          }
-      
-          // If Select Menu is present, check if there is only one component
-          if (component.type === "SELECT_MENU" && components.length > 1) {
-            throw new Error("If Select Menu is present, Max Component Length is 1; Components property length is greater than 1");
-          }
-        }
-      
-        // Create the action row
-        const newCustomActionRow = new ActionRowBuilder();
-      
-        // Add the components to the action row
-        for (const component of components) {
-          try {
-            newCustomActionRow.addComponents(component);
-          } catch (error) {
-            log(
-              "Error adding component [" + component.customID + "] to the Action Row",
-              error
-            );
-          }
-        }
-      
-        // Return the action row
-        return newCustomActionRow;
-} catch (error ) {
-        log(`Error Creating Action Row`, error, actionRowObj)
-        return null
+  // Check if the components property is defined and is an array
+  const components = actionRowObj.components;
+  if (!components || components.length === 0) {
+    log("Components property is not defined or is empty", components);
+    return null;
+  }
+
+  // Check if there are not more than 5 components in the actionRowObj
+  if (components.length > 5) {
+    log("Components property length is greater than 5", components);
+    return null;
+  }
+
+  // Check if all components are buttons or select menus
+  for (const component of components) {
+    switch (component.type) {
+      case "BUTTON":
+      case "SELECT_MENU":
+        break;
+      default:
+        log("Component is not a button or selectMenu", component);
+        return null;
+    }
+
+    // If Select Menu is present, check if there is only one component
+    if (component.type === "SELECT_MENU" && components.length > 1) {
+      log("If Select Menu is present, Max Component Length is 1; Components property length is greater than 1", components);
+      return null;
     }
   }
+
+  // Create the action row
+  const newCustomActionRow = new ActionRowBuilder();
+
+  // Add the components to the action row
+  for (const component of components) {
+    try {
+      newCustomActionRow.addComponents(component);
+    } catch (error) {
+      log("Error adding component [" + component.customID + "] to the Action Row", error);
+      return null;
+    }
+  }
+
+  // Return the action row
+  return newCustomActionRow;
+}
   
   
-  module.exports = { createActionRow };
+  module.exports = { buildRow };
   
   
 
