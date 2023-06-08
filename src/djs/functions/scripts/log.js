@@ -19,28 +19,20 @@ module.exports = function log(message, ...args) {
   const now = new Date();
   const localNow = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
 
-  // Format the message and arguments.
-  const formattedMessage = `[${localNow.toLocaleString()}] ${message}`;
-  for (const arg of args) {
-    formattedMessage += `\t${arg}`;
-  }
-
-  // Reformat the date and time.
-  const formattedDate = localNow.toLocaleDateString("en-US", { hour12: true });
-
   // Get the file name of the calling file.
   const stack = new Error().stack.split('\n');
   const callerFile = stack[2].trim().split(' ')[1];
 
-  // Check if any arguments are instances of Error.
+  // Format the message and arguments.
+  const formattedMessage = `[${localNow.toLocaleString()}] ${message}`;
+  // Reformat the date and time.
+  const formattedDate = localNow.toLocaleDateString("en-US", { hour12: true });
+
   for (const arg of args) {
     if (arg instanceof Error) {
-      // Log the error message and stack trace.
-      try {
-        console.error(`❗️ ${formattedMessage}\t${formattedDate}\t${arg.stack}\t${callerFile}`);
-      } catch(e) {
-        console.log("Error logging error:", e);
-      }
+      formattedMessage += `\n❗️ ${arg.message || "error"}:\t${formattedDate}\n🔹 logged from: ${callerFile} \n🔹 ${arg.stack}`;
+    } else {
+      formattedMessage += `\n${argName(arg)} ---> ${JSON.stringify(arg)}`;
     }
   }
 
