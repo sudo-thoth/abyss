@@ -1,15 +1,15 @@
 {
   "name": "abyss",
   "version": "1.0.0",
-  "description": "test bot",
+  "description": "abyss bot",
   "main": "./src/djs/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bot": "pm2 start ./src/djs/index.js --watch --name 2Test_bot",
+    "bot": "pm2 start ./src/djs/index.js --watch --name abyss_bot",
     "pm2-list": "pm2 list",
     "pm2-stop": "pm2 stop",
-    "show-logs": "pm2 logs 2Test_bot",
-    "toggle-logs": "pm2 trigger 2Test_bot toggleLogs",
+    "show-logs": "pm2 logs abyss_bot",
+    "toggle-logs": "pm2 trigger abyss_bot toggleLogs",
     "start": "nodemon index.js",
     "check-deps": "for dep in axios axios-observable chalk cli-box discord.js dotenv moment mongoose rxjs; do if [ ! -d \"node_modules/$dep\" ]; then npm install $dep; fi; done",
     "kill-node": "pkill -f 'node'"
