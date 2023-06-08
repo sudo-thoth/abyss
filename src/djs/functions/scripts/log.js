@@ -13,6 +13,8 @@ Returns:
 Nothing. 
 */
 
+const x = require("../../../module.js");
+const { argName } = x;
 
 module.exports = function log(message, ...args) {
   // Get the current time in the user's local time zone.
