@@ -81,6 +81,7 @@ const client = new Client({
   const lessCharsThan = require("./djs/functions/scripts/lessCharsThan.js")
   const buildButton = require("./djs/functions/helpers/djsBuilders/buildButton.js")
   const buildRow = require("./djs/functions/helpers/djsBuilders/buildRow.js")
+  const argName = require("./djs/functions/scripts/argName.js")
 
 // Exporting files.
 
@@ -112,6 +113,7 @@ module.exports = {
     lessCharsThan: lessCharsThan,
     buildButton: buildButton,
     buildRow: buildRow,
+    argName: argName,
     
     
 
